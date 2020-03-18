@@ -3,7 +3,7 @@
     <h1> Create student </h1>
 </div>
 
-<div ng-controller="createCtrl">
+<div ng-controller="storeCtrl">
     <p class="success" ng-if="response.status == 201">{{ message }}</p>
     <p class="error" ng-if="response.status != 201">{{ message }}</p>
     <form novalidate class="simple-form" >
@@ -13,6 +13,6 @@
         <label>Email: <input type="text" ng-model="user.email" /></label><br />
         <label>DOB: <input type="text" ng-model="user.dob" /></label><br />
         <input type="button" ng-click="reset()" value="Reset" />
-        <input type="submit" ng-click="create(user)" value="Save" />
+        <input type="submit" ng-click="store(user)" value="Save" />
     </form>
 </div>

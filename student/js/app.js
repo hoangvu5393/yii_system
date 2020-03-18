@@ -11,9 +11,9 @@ studentApp.config(function($routeProvider) {
         .when('/create', {
             templateUrl: 'create.html',
         })
-        .when('/edit', {
+        .when('/:id', {
             templateUrl: 'edit.html',
-            controller: 'EditCtrl'
+            controller: 'editCtrl'
         })
 });
 
@@ -28,8 +28,8 @@ studentApp.controller('indexCtrl', ['$scope', '$http', function($scope, $http){
     });
 }]);
 
-studentApp.controller('createCtrl', ['$scope', '$http', function($scope, $http){
-    $scope.create = function(user) {
+studentApp.controller('storeCtrl', ['$scope', '$http', function($scope, $http){
+    $scope.store = function(user) {
         let data = JSON.stringify(user)
         let message = ''
         $http({
@@ -37,7 +37,7 @@ studentApp.controller('createCtrl', ['$scope', '$http', function($scope, $http){
             data: data,
             url: 'http://yii.student/students',
         }).then(function (response) {
-            message = "Created successfully"
+            message = "Stored successfully"
             $scope.response = response
             $scope.message = message
         }, function (error) {
@@ -47,14 +47,27 @@ studentApp.controller('createCtrl', ['$scope', '$http', function($scope, $http){
     }
 }]);
 
-studentApp.controller('editCtrl', function ($scope, $http){
+studentApp.controller('editCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+    var id = $routeParams.id
+    console.log(id)
+    // $http({
+    //     method: 'GET',
+    //     url: 'http://yii.student/students/:id'
+    // }).then(function (response){
+    //     $scope.student = response.data;
+    // },function (error){
+    //     console.log(error);
+    // });
+}]);
+
+studentApp.controller('updateCtrl', function ($scope, $http){
     $scope.update = function(user) {
         let data = JSON.stringify(user)
         let message = ''
         $http({
             method: 'POST',
             data: data,
-            url: 'http://yii.student/students',
+            url: 'http://yii.student/students/:id',
         }).then(function (response) {
             message = "Updated successfully"
             $scope.response = response
