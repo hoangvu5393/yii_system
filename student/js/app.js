@@ -49,15 +49,14 @@ studentApp.controller('storeCtrl', ['$scope', '$http', function($scope, $http){
 
 studentApp.controller('editCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
     var id = $routeParams.id
-    console.log(id)
-    // $http({
-    //     method: 'GET',
-    //     url: 'http://yii.student/students/:id'
-    // }).then(function (response){
-    //     $scope.student = response.data;
-    // },function (error){
-    //     console.log(error);
-    // });
+    $http({
+        method: 'GET',
+        url: 'http://yii.student/students/' + id
+    }).then(function (response){
+        $scope.student = response.data;
+    },function (error){
+        console.log(error);
+    });
 }]);
 
 studentApp.controller('updateCtrl', function ($scope, $http){
