@@ -1,0 +1,18 @@
+
+<div>
+    <h1> Create student </h1>
+</div>
+
+<div ng-controller="createCtrl">
+    <p class="success" ng-if="response.status == 201">{{ message }}</p>
+    <p class="error" ng-if="response.status != 201">{{ message }}</p>
+    <form novalidate class="simple-form" >
+        <label>First name: <input type="text" ng-model="user.first_name" /></label><br />
+        <label>Last name: <input type="text" ng-model="user.last_name" /></label><br />
+        <label>Phone: <input type="text" ng-model="user.phone" /></label><br />
+        <label>Email: <input type="text" ng-model="user.email" /></label><br />
+        <label>DOB: <input type="text" ng-model="user.dob" /></label><br />
+        <input type="button" ng-click="reset()" value="Reset" />
+        <input type="submit" ng-click="create(user)" value="Save" />
+    </form>
+</div>
